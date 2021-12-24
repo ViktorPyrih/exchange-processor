@@ -1,0 +1,42 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            scope: openid,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/contacts.readonly
+            client-id: 171095133230-kqtrshqjb2eo1pbteiag3bn5rop7k517.apps.googleusercontent.com
+            client-secret: ENC(QPwYoBNwYxBViU9JHrHxijXXS3+KnxVCilBKgrQHcIUNIpteHBDPxlOtKK9vciOfmXJWWO6o+5vv0390eQphnGmxTKFLww3KYsuwAWL0Gmk=)
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/exchange_broker_db?currentSchema=public
+    username: postgres
+    password: ENC(C7MyrggvCPgOt804oB/rhVc1KpwdT0g71F0U8WNNtjX/g/6UXVQsLWQUNMh6M7yu)
+  flyway:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_empty
+  profiles:
+    include: dictionary, email
+  thymeleaf:
+    encoding: UTF-8
+google:
+  recaptcha:
+    destination:
+      url: https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s&remoteip=%s
+      key: g-recaptcha-response
+    credentials:
+      site: 6Lf7x5YdAAAAAN698mNDN7NpFwwdleMPUvpzh2_0
+      secret: ENC(7kNcZb3QrUCNldhBF3CGft5ebBowD419IOCx2A161ddvGvB8LghJ7UPkx40KogigvS4VTHCWoAVVN6KoE07kN6ORjua3i06OdTf17laPsao=)
+server:
+  servlet:
+    session:
+      cookie:
+        name: QWERTY_192837_MNBVCXZ

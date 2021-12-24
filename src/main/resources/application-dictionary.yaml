@@ -1,0 +1,23 @@
+app:
+  user:
+    balance: 100
+    stock: 0
+    gift-days: 7
+  event:
+    initial-value: 30
+    min-value: 3
+    max-value: 57
+  mail:
+    visit-memo-days: 14
+    visitation-memo:
+      subject: Exchange Simulator Memo
+      template: email/visitation-memo
+    invitation:
+      subject: Exchange Simulator Invitation
+      template: email/invitation
+  retry:
+    max-attempts: 3
+    initial-seconds: 1
+  google:
+    urls:
+      contact-uri: https://people.googleapis.com/v1/people/me/connections?personFields=emailAddresses

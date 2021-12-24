@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Visitation Memo</title>
+</head>
+<body>
+    Hi, <span th:utext="${username}"></span>!
+    <br><br>
+    It's &copy;Exchange Simulator Support Team. You visited us on <span th:text="${dateOfLastVisit}"></span> for the last time.
+    <br>
+    Why don't you come back again and have a look at our new features?
+    <br>
+    <hr>
+    We suggest:
+    <ul>
+      <li>
+        modern exchange broker functionality;
+      </li>
+      <li>
+        perfectly structured interface to manage your stock;
+      </li>
+      <li>
+        perfectly structured interface to manage your stock;
+      </li>
+      <li>
+        daily gifts on regular basis(not only for Christmas, you see).
+      </li>
+    </ul>
+    Our application home page link: <a href="http://localhost:8080/home">Home page</a>.
+    <br><br>
+    <img src="https://gerchik.ru/files/uploads/1573723892985_file_trading_graph.webp" alt="Exchange Picture" style="width: 50%; height: 50%">
+</body>
+</html>

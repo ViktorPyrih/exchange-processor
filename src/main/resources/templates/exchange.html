@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="wolf-icon" sizes="180x180" href="favicon/wolf-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange View</title>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js"></script>
+
+    <script type="text/javascript" src="/js/exchange.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/exchange.css">
+</head>
+<body>
+    <span id="success" class="alert alert-success col-sm-4 text-success success" style="display: none">Operation succeeded!</span>
+
+    <div class="common">
+        <div style="position: absolute; right: 10px; text-align: center">
+            <img th:src="${#authentication.getPrincipal().getPicture()}" alt="Profile">
+            <form action="/logout" id="logout">
+                <button type="submit" class="btn btn-dark">Logout</button>
+                <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+            </form>
+        </div>
+        <div class="form-group" style="width: 300px">
+            <label for="dateArea">Date:</label>
+            <input type="date" class="form-control" id="dateArea" placeholder="Date to start monitoring...">
+            <button class="form-control" id="live">Go Live!</button>
+        </div>
+        <div style="width: 100px; position: absolute; right: 0; text-align: center">
+            <label for="balance">Balance:</label>
+            <input id="balance" class="form-control align" readonly>
+
+            <label for="theme">Theme:</label>
+            <select id="theme" class="form-control align">
+                <option>Black</option>
+                <option>White</option>
+            </select>
+
+            <label for="limit">Limit:</label>
+            <select id="limit" class="form-control align">
+                <option>10</option>
+                <option>20</option>
+                <option selected>30</option>
+                <option>40</option>
+                <option>50</option>
+            </select>
+            <br>
+            <select id="contactEmails" class="form-control align">
+                <option selected disabled>Invite</option>
+            </select>
+        </div>
+        <form action="/internal/transactions/create" method="post" id="transactionForm">
+            <div class="form-group" style="width: 200px">
+                <label for="price">Price:</label>
+                <input id="price" class="form-control" readonly>
+
+                <label for="quantityArea">Quantity:</label>
+                <input type="number" class="form-control" required name="quantity" id="quantityArea">
+            </div>
+            <span id="error" class="error alert alert-danger col-sm-4"></span>
+
+            <div class="g-recaptcha col-sm-5"
+                 th:attr="data-sitekey=${@captchaSettings.getSite()}">
+            </div>
+            <br>
+            <span id="captchaError" class="alert alert-danger col-sm-4"></span>
+            <br>
+
+            <button class="btn btn-primary" type="submit" name="type" id="buy" value="BUY" style="top: -5px">Buy Now!</button>
+            <button class="btn btn-primary" type="submit" name="type" id="sell" value="SELL" style="top: -5px">Sell Now!</button>
+        </form>
+    </div>
+
+    <div id="canvas" style="background: black; padding: 10px 10px 10px 10px">
+        <canvas id="chart"></canvas>
+    </div>
+</body>
+</html>

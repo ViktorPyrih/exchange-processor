@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/exchange_broker_test_db?currentSchema=public
+    username: postgres
+    password: ENC(IsQHaN7EoiqET1IedWxISQ/WcpbD/xrwDNLo4X+ePmZwVwdO2h1/x1RMJNxL2cXA)
+

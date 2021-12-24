@@ -1,0 +1,18 @@
+body {
+    background: url('/img/home.jpg') no-repeat 50% 50% fixed
+}
+
+.btn-circle {
+    position: absolute;
+    left: 20%;
+    top: 47%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+    background: gold;
+    color: red;
+}
