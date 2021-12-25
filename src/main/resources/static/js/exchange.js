@@ -19,7 +19,9 @@ function addLastExchangeEvent() {
         }
         chart.data.labels.push(data.dateTime);
         chart.data.datasets[0].data.push(data.absoluteAmount);
-        price.value = data.absoluteAmount;
+        if (data.absoluteAmount) {
+            price.value = data.absoluteAmount;
+        }
         eventsCount++;
         chart.update();
     })
@@ -39,11 +41,7 @@ function initChart(date, dynamic) {
             labels.push(event.dateTime);
             dataset.push(event.absoluteAmount);
         }
-        if (data.length > 0) {
-            price.value = data[data.length - 1].absoluteAmount;
-        } else {
-            price.value = '';
-        }
+        updatePrice(data, dynamic);
         console.log('Labels count: ' + labels.length);
         console.log('Data count: ' + data.length);
         drawChart(labels, dataset, date);
@@ -54,6 +52,27 @@ function initChart(date, dynamic) {
             clearInterval(interval);
         }
     })
+}
+
+function updatePrice(data, dynamic) {
+    if (data.length === 0) {
+        price.value = '';
+        return;
+    }
+    if (dynamic) {
+        price.value = data[data.length - 1].absoluteAmount;
+    } else {
+        price.value = average(data);
+    }
+}
+
+function average(array) {
+    let sum = 0;
+    array
+        .map(value => value.absoluteAmount)
+        .forEach(value => sum += value);
+
+    return array.length === 0 ? 0 : (sum / array.length).toPrecision(3);
 }
 
 function drawChart(labels, data, date) {
@@ -175,6 +194,7 @@ function getContactEmails() {
         let contactEmails = document.getElementById('contactEmails');
         contactEmails.onchange = function (e) {
             sendInvitation(e.target.value);
+            e.target.selectedIndex = 0;
         }
         for (let email of data) {
             let option = document.createElement('option');

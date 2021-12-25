@@ -2,7 +2,7 @@ package ua.edu.cdu.vu.exchangeprocessor.component;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import ua.edu.cdu.vu.exchangeprocessor.utils.RandomUtils;
+import ua.edu.cdu.vu.exchangeprocessor.utils.CalculationUtils;
 
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public class StatisticsAnalyzer {
         recentSummary.put(pivot, (int) pivotPart);
         int[] randomizer = aggregateToArray(recentSummary, (int) randomizerSize, (int) optimizationFactor);
 
-        return randomizer[RandomUtils.generateRandomNumber(0, (int) randomizerSize - 1)];
+        return randomizer[CalculationUtils.generateRandomNumber(0, (int) randomizerSize - 1)];
     }
 
     private long calculateStatisticSum(Map<Integer, Integer> recentSummary) {
@@ -61,7 +61,7 @@ public class StatisticsAnalyzer {
             if (optimizationFactor == 1) {
                 break;
             }
-            optimizationFactor = RandomUtils.calculateGreatestCommonDivisor(optimizationFactor, entry.getValue());
+            optimizationFactor = CalculationUtils.calculateGreatestCommonDivisor(optimizationFactor, entry.getValue());
         }
 
         return optimizationFactor;

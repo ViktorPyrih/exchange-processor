@@ -13,6 +13,7 @@ import ua.edu.cdu.vu.exchangeprocessor.entity.projection.TransactionAggregationV
 import ua.edu.cdu.vu.exchangeprocessor.exception.EventNotFoundException;
 import ua.edu.cdu.vu.exchangeprocessor.repository.ExchangeEventRepository;
 import ua.edu.cdu.vu.exchangeprocessor.repository.TransactionRepository;
+import ua.edu.cdu.vu.exchangeprocessor.utils.DateUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -54,8 +55,9 @@ public class ExchangeEventService {
     }
 
     public List<ExchangeEventDto> getMostSignificantEvents(LocalDate date, Integer limit) {
-        LocalDateTime dateTimeFrom = date.atStartOfDay();
-        LocalDateTime dateTimeTo = date.plusDays(1).atStartOfDay();
+        LocalDate serverDate = DateUtils.convertTimeZone(date);
+        LocalDateTime dateTimeFrom = serverDate.atStartOfDay();
+        LocalDateTime dateTimeTo = serverDate.plusDays(1).atStartOfDay();
 
         List<Long> eventIds = repository.findAllIdsByDatePublishedBetween(dateTimeFrom, dateTimeTo);
         if (eventIds.size() > limit) {
