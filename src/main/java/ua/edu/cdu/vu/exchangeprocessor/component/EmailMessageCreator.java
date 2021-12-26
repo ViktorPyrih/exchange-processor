@@ -24,7 +24,6 @@ public class EmailMessageCreator {
     private final TemplateEngine templateEngine;
     private final JavaMailSender mailSender;
 
-
     public MimeMessage createVisitationMemoEmail(String email, String username, LocalDateTime dateTimeOfLastVisit) {
         Map<String, Object> args = Map.of("username", username, "dateOfLastVisit", dateTimeOfLastVisit.toLocalDate());
         String template = generateTemplate(emailProperties.getVisitationMemo().getTemplate(), args);
