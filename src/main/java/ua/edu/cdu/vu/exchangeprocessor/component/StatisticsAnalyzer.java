@@ -21,6 +21,10 @@ public class StatisticsAnalyzer {
         }
 
         long sum = calculateStatisticSum(recentSummary);
+        if (sum == ZERO) {
+            return CalculationUtils.generateRandomNumber(-1, 1);
+        }
+
         long optimizationFactor = calculateOptimizationFactor(recentSummary, sum);
         sum /= optimizationFactor;
         long pivotPart = sum / recentSummary.size();

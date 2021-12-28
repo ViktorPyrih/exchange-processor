@@ -7,9 +7,6 @@ spring:
             scope: openid,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/contacts.readonly
             client-id: 171095133230-kqtrshqjb2eo1pbteiag3bn5rop7k517.apps.googleusercontent.com
             client-secret: ENC(QPwYoBNwYxBViU9JHrHxijXXS3+KnxVCilBKgrQHcIUNIpteHBDPxlOtKK9vciOfmXJWWO6o+5vv0390eQphnGmxTKFLww3KYsuwAWL0Gmk=)
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/exchange_broker_db?currentSchema=public
@@ -40,3 +37,7 @@ server:
     session:
       cookie:
         name: QWERTY_192837_MNBVCXZ
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /docs/api

@@ -1,8 +1,20 @@
+buildscript {
+    ext {
+        springBootVersion = '2.5.8'
+    }
+}
+
 plugins {
-    id 'org.springframework.boot' version '2.6.1'
+    id "org.springframework.boot" version "${springBootVersion}"
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'java'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    }
 }
 
 lombok {
@@ -35,7 +47,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.1'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.4.8'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     // db

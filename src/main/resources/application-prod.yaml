@@ -2,7 +2,7 @@ app:
   scheduling:
     enabled: true
     exchange:
-      cron: "*/5 * * * * *"
+      cron: "1 */10 * * * *"
       zone: UTC
     gift:
       cron: "30 */10 * * * *"
