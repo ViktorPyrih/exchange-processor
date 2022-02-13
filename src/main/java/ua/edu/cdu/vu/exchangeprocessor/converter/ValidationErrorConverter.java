@@ -1,7 +1,6 @@
 package ua.edu.cdu.vu.exchangeprocessor.converter;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.experimental.UtilityClass;
 import ua.edu.cdu.vu.exchangeprocessor.dto.advice.ValidationErrorResponse;
 import ua.edu.cdu.vu.exchangeprocessor.dto.advice.Violation;
 
@@ -9,7 +8,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class ValidationErrorConverter {
 
     private static final String ERROR_CODE = "ConstrainViolation";
@@ -25,7 +24,7 @@ public class ValidationErrorConverter {
                 .build();
     }
 
-    private static Violation convert(ConstraintViolation<?> violation) {
+    private Violation convert(ConstraintViolation<?> violation) {
         return Violation
                 .builder()
                 .fieldName(violation.getPropertyPath().toString())

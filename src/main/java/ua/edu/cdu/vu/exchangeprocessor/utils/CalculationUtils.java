@@ -1,9 +1,8 @@
 package ua.edu.cdu.vu.exchangeprocessor.utils;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class CalculationUtils {
 
     public static int generateRandomNumber(int lowerBound, int upperBound) {

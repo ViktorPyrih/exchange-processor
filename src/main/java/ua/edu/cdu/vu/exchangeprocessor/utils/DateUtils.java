@@ -1,14 +1,13 @@
 package ua.edu.cdu.vu.exchangeprocessor.utils;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class DateUtils {
 
     private static final ZoneId UTC = ZoneId.of("UTC");

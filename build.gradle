@@ -11,19 +11,12 @@ plugins {
     id 'java'
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-    }
-}
-
 lombok {
     version '1.18.22'
 }
 
 group = 'ua.edu.cdu.vu'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 repositories {
     mavenCentral()

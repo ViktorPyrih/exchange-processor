@@ -1,14 +1,13 @@
 package ua.edu.cdu.vu.exchangeprocessor.converter;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.experimental.UtilityClass;
 import ua.edu.cdu.vu.exchangeprocessor.dto.business.ExchangeEventDto;
 import ua.edu.cdu.vu.exchangeprocessor.entity.ExchangeEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class ExchangeEventConverter {
 
     public static ExchangeEventDto entityToDto(ExchangeEvent exchangeEvent) {
