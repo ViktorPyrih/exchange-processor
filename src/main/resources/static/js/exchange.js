@@ -12,7 +12,7 @@ const eventInterval = 5000;
 
 function addLastExchangeEvent() {
     $.get("/internal/events/last", function(data) {
-        console.log('Last event: ' + data.dateTime + ' ' + data.absoluteAmount)
+        console.log(`Last event: ${data.dateTime}; ${data.absoluteAmount}`)
         if (eventsCount >= eventLimit && data) {
             chart.data.labels.splice(0, 1);
             chart.data.datasets[0].data.splice(0, 1);
@@ -32,8 +32,8 @@ function getLiveEvents() {
 }
 
 function initChart(date, dynamic) {
-    console.log('Date: ' + date + '; Dynamic: ' + dynamic);
-    $.get('/internal/events/all?date=' + date + '&limit=' + eventLimit, function (data) {
+    console.log(`Date: ${date}; Dynamic: ${dynamic}`);
+    $.get(`/internal/events/all?date=${date}&limit=${eventLimit}`, function (data) {
         eventsCount = data.length;
         let labels = [];
         let dataset = [];
@@ -83,7 +83,7 @@ function drawChart(labels, data, date) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Exchange events. Date: ' + date,
+                label: `Exchange events. Date: ${date}`,
                 data: data,
                 cubicInterpolationMode: 'monotone',
                 backgroundColor: 'crimson',
@@ -120,7 +120,7 @@ function createTransaction() {
         hideElement(error);
 
         $.ajax({
-            url: 'internal/transactions/create?type=' + button,
+            url: `internal/transactions/create?type=${button}`,
             method: 'POST',
             contentType: 'application/x-www-form-urlencoded',
             data: form
@@ -206,7 +206,7 @@ function getContactEmails() {
 
 function sendInvitation(email) {
     $.ajax({
-        url: '/internal/email/send?email=' + email,
+        url: `/internal/email/send?email=${email}`,
         method: 'POST',
         contentType: 'application/json'
     }).done(function () {
