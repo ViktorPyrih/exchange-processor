@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <link rel="manifest" href="/favicon/site.webmanifest">
 <link rel="wolf-icon" sizes="180x180" href="/favicon/wolf-icon.png">
@@ -28,7 +28,7 @@
 
     <div class="common">
         <div style="position: absolute; right: 10px; text-align: center">
-            <img th:src="${#authentication.getPrincipal().getPicture()}" alt="Profile">
+            <img sec:authorize="!isAnonymous()" th:src="${#authentication.getPrincipal().getPicture()}" alt="Profile">
             <form action="/logout" id="logout">
                 <button type="submit" class="btn btn-dark">Logout</button>
                 <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
